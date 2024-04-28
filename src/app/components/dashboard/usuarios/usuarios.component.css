@@ -1,0 +1,28 @@
+.jumbotron {
+  background-color: white;
+}
+
+.btn-cues {
+  padding: 1rem 2rem;
+  border-radius: 300px;
+}
+.h3 {
+  font-family: "Rowdies", "cursive";
+}
+
+.btn-login {
+  background-color: #f05f44;
+  border-color: #f05f44;
+}
+p {
+  font-family: "Rowdies", cusive;
+  font-size: 2.3m;
+  color: #cdd0d4;
+}
+/* 
+.layout {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../../../../assets/img/medicina.jpg);
+  background-size: cover;
+  background-position: center;
+} */

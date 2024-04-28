@@ -1,0 +1,32 @@
+p {
+  font-family: "Rowdies", cusive;
+  font-size: 40px;
+  color: #cdd0d4;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+hr {
+  border-width: 3px;
+  max-width: 65px;
+  border-color: #f05f44;
+}
+
+.btn-xl {
+  background-color: #f05f44;
+  border-color: #f05f44;
+  margin: 10px;
+  padding: 1rem 2rem;
+  border-radius: 100px;
+}
+
+.btn-xl:hover {
+  background-color: #ee4808;
+  border-radius: #ee4808;
+  border-width: 4px;
+}

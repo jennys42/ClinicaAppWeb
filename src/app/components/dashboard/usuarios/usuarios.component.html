@@ -1,0 +1,137 @@
+<div class="container mt-5">
+    <div class="row" style="width: 100%;">
+        <div class="col-lg-6 offset-lg-3">
+            <h3 class="titulo">USUARIOS</h3>
+            <br>
+            <!-- <app-loading *ngIf="loading"></app-loading> -->
+
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card body">
+                    <h5 class="titulo">{{this.accion}} Usuario</h5>
+                    <form [formGroup]="formUsuario" (ngSubmit)="guardarUsuario()"
+                        style="padding-top: 10px; padding: 5%">
+
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                                <input formControlName="nombre_completo" type="text" class="form-control"
+                                    placeholder="Nombre Completo">
+                            </div>
+                            <span class="text-danger ml-2"
+                                *ngIf="this.formUsuario.get('nombre_completo')?.hasError('required') && this.formUsuario.get('nombre_completo')?.touched">
+                                El nombre es <strong>requerido</strong>
+                            </span>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-mobile-retro"></i></span>
+                                <input formControlName="num_celular" type="text" class="form-control" maxlength="16"
+                                    placeholder="Número celular">
+                            </div>
+                            <span class="text-danger ml-2"
+                                *ngIf="this.formUsuario.get('num_celular')?.hasError('required') && this.formUsuario.get('num_celular')?.touched">
+                                El Número celular es <strong>requerido</strong>
+                            </span>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                                <input formControlName="correo" type="text" class="form-control" placeholder="Correo">
+                            </div>
+                            <span class="text-danger ml-2"
+                                *ngIf="this.formUsuario.get('correo')?.hasError('required') && this.formUsuario.get('correo')?.touched">
+                                El correo es <strong>requerido</strong>
+                            </span>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+                                <input formControlName="password" type="password" class="form-control"
+                                    placeholder="Password">
+                            </div>
+                            <span class="text-danger ml-2"
+                                *ngIf="this.formUsuario.get('password')?.hasError('required') && this.formUsuario.get('password')?.touched">
+                                El password es <strong>requerido</strong>
+                            </span>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+                                <p-dropdown formControlName="rol" [options]="this.listMaRoles" optionLabel="nombre_rol"
+                                    placeholder="Seleccione un rol"></p-dropdown>
+                            </div>
+                            <span class="text-danger ml-2"
+                                *ngIf="this.formUsuario.get('rol')?.hasError('required') && this.formUsuario.get('rol')?.touched">
+                                El rol es <strong>requerido</strong>
+                            </span>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+                                <p-dropdown formControlName="especialidad" [options]="this.listMaEspecialidades"
+                                    optionLabel="nombre_especialidad"
+                                    placeholder="Seleccione una especialidad"></p-dropdown>
+                            </div>
+                            <span class="text-danger ml-2"
+                                *ngIf="this.formUsuario.get('especialidad')?.hasError('required') && this.formUsuario.get('especialidad')?.touched">
+                                La especialidad es <strong>requerido</strong>
+                            </span>
+                        </div>
+                        <br><br><br>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success btn-lg" [disabled]="!this.formUsuario.valid" type="submit"><i
+                                    class="fas fa-save"></i>&nbsp;Aceptar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card body">
+                    <p-table [value]="listUsuarios" [tableStyle]="{ 'min-width': '100%' }" class="table table-striped">
+                        <ng-template pTemplate="caption">
+                            <h5 class="titulo">Usuarios Registrados</h5>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Especialidad</th>
+                                <th>Rol</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowdata>
+                            <tr>
+                                <td>{{rowdata.id}}</td>
+                                <td>{{rowdata.nombre_completo}}</td>
+                                <td>{{rowdata.correo}}</td>
+                                <td>{{rowdata.nombre_especialidad}}</td>
+                                <td>{{rowdata.nombre_rol}}</td>
+                                <td>
+                                    <i (click)="editarUsuario(rowdata)" class="far fa-edit text-info"></i>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
