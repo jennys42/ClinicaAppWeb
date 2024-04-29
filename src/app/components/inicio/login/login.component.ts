@@ -47,9 +47,44 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         this.router.navigate(['/dashboard']);
       } else {
-        this.loading = false;
-        this.toastr.error(result.errors[0].msg, 'Operación fallida');
-        this.login.reset();
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+        const urlencoded = new URLSearchParams();
+        urlencoded.append("correo", this.login.get("usuario")?.value);
+        urlencoded.append("password", this.login.get("password")?.value);
+
+        const requestOptions: RequestInit = {
+          method: "POST",
+          headers: myHeaders,
+          body: urlencoded.toString(), // Convert URLSearchParams to string for fetch
+          redirect: "follow",
+        };
+
+        fetch("https://poli-proyec-gerencia.onrender.com/clientes/cliente/login", requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            if (result.successful) {
+              localStorage.setItem('user',result.user.id)
+
+              this.registarVariableSesion(result);
+              this.toastr.success(result.mensaje, 'Exito');
+              this.login.reset();
+              this.loading = false;
+              this.router.navigate(['/client/home']);
+
+            } else {
+              this.loading = false;
+              this.toastr.error(result.errors[0].msg, 'Operación fallida');
+              this.login.reset();
+
+            }
+          })
+          .catch((error) => console.error(error));
+
+        // this.loading = false;
+        // this.toastr.error(result.errors[0].msg, 'Operación fallida');
+        // this.login.reset();
       }
     }, error => {
       this.loading = false;

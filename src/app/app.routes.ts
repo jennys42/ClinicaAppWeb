@@ -7,6 +7,8 @@ import { UsuariosComponent } from './components/dashboard/usuarios/usuarios.comp
 import { RolesComponent } from './components/dashboard/roles/roles.component';
 import { EspecialidadesComponent } from './components/dashboard/especialidades/especialidades.component';
 
+import {HomeComponent} from './components/home/home.component'
+
 
 export const routes: Routes = [
 
@@ -24,6 +26,9 @@ export const routes: Routes = [
             { path: 'especialidades', component: EspecialidadesComponent },
             { path: 'login', component: LoginComponent },
         ]
+    },
+    {
+        path:"client/home", component:HomeComponent
     },
     { path: '**', redirectTo: '/inicio', pathMatch: 'full' },
 

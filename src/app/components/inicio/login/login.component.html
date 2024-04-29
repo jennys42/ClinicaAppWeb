@@ -1,45 +1,49 @@
 <div class="container">
     <div class="row" style="width: 100%;">
         <div class="col-lg-6 offset-lg-3">
-            <div class="card text-center" style="padding: 20px;">
-                <h3>Login</h3>
-                <br>
-                <app-loading *ngIf="loading"></app-loading>
-                <form [formGroup]="login" (ngSubmit)="log()" style="padding-top: 10px; padding: 5%">
-                    <div class="mb-3">
-                        <div class="form-group" style="text-align: start;">
-                            <input type="text" class="form-control" placeholder="Usuario" formControlName="usuario">
-                            <span class="text-danger ml-2"
-                                *ngIf="login.get('usuario')?.hasError('required') && login.get('usuario')?.touched">
-                                El usuario es <strong>requerido</strong>
-                            </span>
-                        </div>
-                    </div>
+            <div class="card text-center" style="border-radius: 15px; border: none;">
+                <div class="card-body">
 
-                    <div class="mb-3">
-                        <div class="form-group" style="text-align: start;">
-                            <input type="password" class="form-control" placeholder="Contraseña"
-                                formControlName="password">
-                            <span class="text-danger ml-2"
-                                *ngIf="login.get('password')?.hasError('required') && login.get('password')?.touched">
-                                La contraseña es <strong>requerida</strong>
-                            </span>
-                            <span class="text-danger ml-2"
-                                *ngIf="login.get('password')?.hasError('minlength') && login.get('password')?.touched">
-                                La contraseña debe tener <strong>minimo 4 caracteres</strong>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="form-group">
-                            <button class="btn btn-primary mr-5 btn-login" type="submit"
-                                [disabled]="login.invalid">Aceptar</button>
 
-                            <button class="btn btn-primary" [routerLink]="['/inicio/bienvenido']"
-                                routerLinkActive="router-link-active">Volver</button>
+                    <h3>Login</h3>
+                    <br>
+                    <app-loading *ngIf="loading"></app-loading>
+                    <form [formGroup]="login" (ngSubmit)="log()" style="padding-top: 10px; padding: 5%">
+                        <div class="mb-3">
+                            <div class="form-group" style="text-align: start;">
+                                <input type="text" class="form-control" placeholder="Usuario" formControlName="usuario">
+                                <span class="text-danger ml-2"
+                                    *ngIf="login.get('usuario')?.hasError('required') && login.get('usuario')?.touched">
+                                    El usuario es <strong>requerido</strong>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </form>
+
+                        <div class="mb-3">
+                            <div class="form-group" style="text-align: start;">
+                                <input type="password" class="form-control" placeholder="Contraseña"
+                                    formControlName="password">
+                                <span class="text-danger ml-2"
+                                    *ngIf="login.get('password')?.hasError('required') && login.get('password')?.touched">
+                                    La contraseña es <strong>requerida</strong>
+                                </span>
+                                <span class="text-danger ml-2"
+                                    *ngIf="login.get('password')?.hasError('minlength') && login.get('password')?.touched">
+                                    La contraseña debe tener <strong>minimo 4 caracteres</strong>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <button class="btn btn-primary m-2 btn-login" type="submit"
+                                    [disabled]="login.invalid">Aceptar</button>
+
+                                <button class="btn btn-primary m-2" [routerLink]="['/inicio/bienvenido']"
+                                    routerLinkActive="router-link-active">Volver</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 

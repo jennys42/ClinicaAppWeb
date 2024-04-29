@@ -10,8 +10,8 @@
 
     <div class="row mt-4">
         <div class="col-lg-6">
-            <div class="card">
-                <div class="card body">
+            <div class="card" style="border-radius: 15px;">
+                <div class="card-body">
                     <h5 class="titulo">{{this.accion}} Usuario</h5>
                     <form [formGroup]="formUsuario" (ngSubmit)="guardarUsuario()"
                         style="padding-top: 10px; padding: 5%">
@@ -80,7 +80,7 @@
                                 <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
                                 <p-dropdown formControlName="especialidad" [options]="this.listMaEspecialidades"
                                     optionLabel="nombre_especialidad"
-                                    placeholder="Seleccione una especialidad"></p-dropdown>
+                                    placeholder="Seleccione una especialidad" class="form-control"></p-dropdown>
                             </div>
                             <span class="text-danger ml-2"
                                 *ngIf="this.formUsuario.get('especialidad')?.hasError('required') && this.formUsuario.get('especialidad')?.touched">
@@ -89,7 +89,7 @@
                         </div>
                         <br><br><br>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-success btn-lg" [disabled]="!this.formUsuario.valid" type="submit"><i
+                            <button class="btn btn-success btn-sm" [disabled]="!this.formUsuario.valid" type="submit"><i
                                     class="fas fa-save"></i>&nbsp;Aceptar</button>
                         </div>
 
@@ -101,9 +101,9 @@
 
 
         <div class="col-lg-6">
-            <div class="card">
-                <div class="card body">
-                    <p-table [value]="listUsuarios" [tableStyle]="{ 'min-width': '100%' }" class="table table-striped">
+            <div class="card" style="font-size: 15px;">
+                <div class="card-body">
+                    <p-table [value]="listUsuarios" [tableStyle]="{ 'width': '100%' }" class="table table-striped" >
                         <ng-template pTemplate="caption">
                             <h5 class="titulo">Usuarios Registrados</h5>
                         </ng-template>

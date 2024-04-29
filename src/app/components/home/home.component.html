@@ -1,0 +1,403 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5><b>Hola {{user.nombres}}</b></h5>
+            <div class="row">
+                <div class="col-2">
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action active" id="list-home-list"
+                            data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">Solicitar
+                            Cita</a>
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list"
+                            href="#list-profile" role="tab" aria-controls="list-profile">Citas</a>
+                        <a class="list-group-item list-group-item-action" id="ajustes-list" data-bs-toggle="list"
+                            href="#ajustes" role="tab" aria-controls="list-ajsutes">Ajustes</a>
+                        <a class="list-group-item list-group-item-action" id="cerrar-list" data-bs-toggle="list"
+                            href="#cerrar" role="tab" aria-controls="list-ajsutes">Cerrar Sesión</a>
+                    </div>
+                </div>
+                <div class="col-10">
+
+                    <div class="tab-content" id="nav-tabContent">
+
+                        <div class="tab-pane fade show active" id="list-home" role="tabpanel"
+                            aria-labelledby="list-home-list">
+                            <form (submit)="submitFormSolicitarCita($event)">
+                                <input type="number" name="id_cliente" [(ngModel)]="solicitar.id_cliente" class="form-control" value="{{user.id_cliente}}"
+                                                placeholder="name@example.com" hidden>
+
+                                <div class="row">
+                                    
+                                    <div class="form-floating mb-3">
+                                        <select name="id_user" [(ngModel)]="solicitar.id_user" class="form-control form-control-sm" id="">
+                                            <option  *ngFor="let medico of medicos" value="{{medico.id}}">{{medico.nombre_completo}}</option>
+
+                                        </select>
+                                        <label for="floatingInput">Medico</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="date" name="fecha_cita" [(ngModel)]="solicitar.fecha_cita" class="form-control" id="floatingInput" value=""
+                                                placeholder="name@example.com">
+                                            <label for="floatingInput">Fecha Cita</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="time" name="hora_ini" [(ngModel)]="solicitar.hora_ini" class="form-control" id="floatingInput" value=""
+                                                placeholder="name@example.com">
+                                            <label for="floatingInput">Hora Inicial</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="time" name="hora_fin" [(ngModel)]="solicitar.hora_fin" class="form-control" id="floatingInput" value=""
+                                                placeholder="name@example.com">
+                                            <label for="floatingInput">Hora Final</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" name="direccion" [(ngModel)]="solicitar.direccion" class="form-control" value="">
+                                            <label for="floatingInput">Direccion</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="email" name="cita_precencial" [(ngModel)]="solicitar.cita_precencial" class="form-control" id="floatingInput" value=""
+                                                placeholder="name@example.com">
+                                            <label for="floatingInput">Presencial</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-success btn-sm float-end">Solicitar ahora</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="list-profile" role="tabpanel"
+                            aria-labelledby="list-profile-list">
+                            <button class="btn btn-success btn-sm float-end" onclick="document.getElementById('list-home-list').click();
+                            ">Solicitar Cita</button>
+
+
+                            <ul class="nav nav-underline" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                                        data-bs-target="#home-tab-pane" type="button" role="tab"
+                                        aria-controls="home-tab-pane" aria-selected="true">En espera</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                                        data-bs-target="#profile-tab-pane" type="button" role="tab"
+                                        aria-controls="profile-tab-pane" aria-selected="false">Aceptadas</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                                        data-bs-target="#contact-tab-pane" type="button" role="tab"
+                                        aria-controls="contact-tab-pane" aria-selected="false">Cancelada</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="disabled-tab" data-bs-toggle="tab"
+                                        data-bs-target="#disabled-tab-pane" type="button" role="tab"
+                                        aria-controls="disabled-tab-pane" aria-selected="false">Atendidas</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="history-tab" data-bs-toggle="tab"
+                                        data-bs-target="#history-tab-pane" type="button" role="tab"
+                                        aria-controls="disabled-tab-pane" aria-selected="false">Historial</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                                    aria-labelledby="home-tab" tabindex="0">
+
+
+                                    <table class="table" style="font-size: 12px;">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Creado</th>
+                                                <th>Fecha Cita</th>
+                                                <th>Medico</th>
+                                        
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let cita of citas">
+                                                <ng-container *ngIf="cita.id_cita_estado === 4">
+                                                    <td>{{cita.id}}</td>
+                                                    <td>{{formatDate(cita.createdAt)}}</td>
+                                                    <td>{{formatDate(cita.fecha_cita)}}</td>
+                                                    <td>{{buscarNombreMedico(cita.id_user)}}</td>
+                                                    
+                                                </ng-container>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
+                                    aria-labelledby="profile-tab" tabindex="0">
+                                    <table class="table" style="font-size: 12px;">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Creado</th>
+                                                <th>Fecha Cita</th>
+                                                <th>Medico</th>
+                                                <th>Motivo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let cita of citas">
+                                                <ng-container *ngIf="cita.id_cita_estado === 3">
+                                                    <td>{{cita.id}}</td>
+                                                    <td>{{formatDate(cita.createdAt)}}</td>
+                                                    <td>{{formatDate(cita.fecha_cita)}}</td>
+                                                    <td>{{buscarNombreMedico(cita.id_user)}}</td>
+                                                </ng-container>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel"
+                                    aria-labelledby="contact-tab" tabindex="0">
+                                    <table class="table" style="font-size: 12px;">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Creado</th>
+                                                <th>Fecha Cita</th>
+                                                <th>Medico</th>
+                                                <th>Motivo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let cita of citas">
+                                                <ng-container *ngIf="cita.id_cita_estado === 2">
+                                                    <td>{{cita.id}}</td>
+                                                    <td>{{formatDate(cita.createdAt)}}</td>
+                                                    <td>{{formatDate(cita.fecha_cita)}}</td>
+                                                    <td>{{buscarNombreMedico(cita.id_user)}}</td>
+                                                </ng-container>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel"
+                                    aria-labelledby="disabled-tab" tabindex="0">
+                                    <table class="table" style="font-size: 12px;">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Creado</th>
+                                                <th>Fecha Cita</th>
+                                                <th>Medico</th>
+                                                <th>Motivo</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let cita of citas">
+                                                <ng-container *ngIf="cita.id_cita_estado === 1">
+                                                    <td>{{cita.id}}</td>
+                                                    <td>{{formatDate(cita.createdAt)}}</td>
+                                                    <td>{{formatDate(cita.fecha_cita)}}</td>
+                                                    <td>{{buscarNombreMedico(cita.id_user)}}</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-success dropdown-toggle"
+                                                                type="button" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><button class="dropdown-item fw-bold"
+                                                                        type="button">Ver medicamentos</button></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </ng-container>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="history-tab-pane" role="tabpanel"
+                                    aria-labelledby="history-tab" tabindex="0">
+                                    <table class="table" style="font-size: 12px;">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Creado</th>
+                                                <th>Fecha Cita</th>
+                                                <th>Medico</th>
+                                                <th>Motivo</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let cita of citas">
+
+                                                <td>{{cita.id}}</td>
+                                                <td>{{cita.fecha_cita}}</td>
+                                                <td></td>
+                                                <td>Juan garzon</td>
+                                                <td></td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-success dropdown-toggle" type="button"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><button class="dropdown-item text-danger fw-bold"
+                                                                    type="button">Cancelar Cita</button></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="ajustes" role="tabpanel" aria-labelledby="list-ajsutes">
+                            <b>Perfil</b>
+                            <form (input)="submitFormProfile($event)" autocomplete="off">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="nombres"
+                                                [(ngModel)]="user.nombres" name="nombres" placeholder="Nombres"
+                                                required>
+                                            <label for="nombres">Nombres</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="apellidos"
+                                                [(ngModel)]="user.apellidos" name="apellidos" placeholder="Apellidos"
+                                                required>
+                                            <label for="apellidos">Apellidos</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="num_documento"
+                                                [(ngModel)]="user.num_documento" name="num_documento"
+                                                placeholder="Número de Documento" required>
+                                            <label for="num_documento">Número de Documento</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="num_celular"
+                                                [(ngModel)]="user.num_celular" name="num_celular"
+                                                placeholder="Número Celular" required>
+                                            <label for="num_celular">Número Celular</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="direccion"
+                                                [(ngModel)]="user.direccion" name="direccion" placeholder="Dirección"
+                                                required>
+                                            <label for="direccion">Dirección</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="ciudad"
+                                                [(ngModel)]="user.ciudad" name="ciudad" placeholder="Ciudad" required>
+                                            <label for="ciudad">Ciudad</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="departamento"
+                                                [(ngModel)]="user.departamento" name="departamento"
+                                                placeholder="Departamento" required>
+                                            <label for="departamento">Departamento</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="date" class="form-control" id="fecha_nacimiento"
+                                                [(ngModel)]="user.fecha_nacimiento" name="fecha_nacimiento" required>
+                                            <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="sexo_biologico"
+                                                [(ngModel)]="user.sexo_biologico" name="sexo_biologico"
+                                                placeholder="Sexo Biológico" required>
+                                            <label for="sexo_biologico">Sexo Biológico</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="estado_civil"
+                                                [(ngModel)]="user.estado_civil" name="estado_civil"
+                                                placeholder="Estado Civil" required>
+                                            <label for="estado_civil">Estado Civil</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="ref_nombre"
+                                                [(ngModel)]="user.ref_nombre" name="ref_nombre"
+                                                placeholder="Nombre Referencia" required>
+                                            <label for="ref_nombre">Nombre Referencia</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="ref_telefono"
+                                                [(ngModel)]="user.ref_telefono" name="ref_telefono"
+                                                placeholder="Teléfono Referencia" required>
+                                            <label for="ref_telefono">Teléfono Referencia</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-success btn-sm float-end" hidden>Guardar</button>
+                            </form>
+
+                        </div>
+                        <div class="tab-pane fade" id="cerrar" role="tabpanel" aria-labelledby="list-cerrar">
+                            ¿Desea cerrar la sesion?
+                            <br>
+                            <button class="btn btn-success btn-sm mt-2" type="button" (click)="cerrarSesion()">Si, cerrar</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

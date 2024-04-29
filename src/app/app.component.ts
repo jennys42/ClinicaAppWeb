@@ -3,12 +3,13 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNGConfig } from 'primeng/api';
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, FormsModule, RouterOutlet, RouterLink, RouterLinkActive, ReactiveFormsModule,
-    InicioComponent
+    InicioComponent,CommonModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
